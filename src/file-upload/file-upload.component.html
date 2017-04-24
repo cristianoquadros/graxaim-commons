@@ -1,0 +1,22 @@
+<div class="row justify-content-start">
+    <div class="col col-md-auto">
+        <div class="form-group">
+            <label class="mr-2">Upload de Documentos:</label>
+            <gx-tooltip tip="Clique no botão abaixo para selecionar os arquivos para upload ou arraste até o retângulo."></gx-tooltip>
+            <br/>
+            <label class="upload-button" [title]="tip">
+                <i class="fa fa-files-o" aria-hidden="true"></i>
+                Selecionar Arquivos
+                <input type="file" class="hidden" [accept]="acceptFile"
+                        ng2FileSelect multiple [uploader]="uploader" />                
+            </label>  
+        </div>            
+    </div>
+   <!-- <div class="col col-3">
+        <div ng2FileDrop [ngClass]="{'file-over': hasBaseDropZoneOver}" [title]="tip"
+            (fileOver)="fileOverBase($event)" [uploader]="uploader" class="drag-n-drop-container">
+            Arraste aqui os arquivos
+            <i class="fa fa-upload ml-1" aria-hidden="true"></i>
+        </div>
+    </div> -->
+</div>

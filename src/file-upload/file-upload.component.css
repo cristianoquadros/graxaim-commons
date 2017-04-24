@@ -1,0 +1,47 @@
+.drag-n-drop-container {
+width: 205px;
+    height: 56px;
+    border: 2px dashed gray;
+    border-radius: 5px;
+    padding: 14px 19px;
+    color: gray;
+    margin-top: 4px;
+    font-size: 1em;
+}
+
+.upload-button:hover {
+    cursor: pointer;
+}
+
+.upload-button {
+    color: #292b2c;
+    background-color: #e6e6e6;
+    background-image: none;
+    border-color: #adadad;
+    cursor: pointer;
+    padding: 0.30rem 1rem !important;
+    font-size: 1em;
+    border-radius: 0.2rem;
+    display: inline-block;
+    font-weight: normal;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin-bottom: 0px;
+    font-family: sans-serif;
+}
+
+.drag-n-drop-container h1 {
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1em;
+    color: gray;
+    margin: 10px;
+}
+
+.upload-button input {
+    display: none;
+}

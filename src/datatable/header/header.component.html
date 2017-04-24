@@ -1,0 +1,53 @@
+<div class="data-table-header">
+    <h5 class="title" [textContent]="dataTable.headerTitle"></h5>
+    <div class="button-panel">
+
+        <button *ngIf="dataTable.items.length>0" type="button" class="btn btn-secondary btn-sm column-selector-button" [class.active]="columnSelectorOpen"
+            (click)="columnSelectorOpen = !columnSelectorOpen; $event.stopPropagation()" title="Opções de visualização da tabela" >
+             <i class="fa fa-list"></i>
+        </button>
+        <div class="column-selector-wrapper" (click)="$event.stopPropagation()">
+            <div *ngIf="columnSelectorOpen" class="column-selector-box card">
+                <div *ngIf="dataTable.expandableRows" class="column-selector-fixed-column checkbox">
+                    <label class="column-label">
+                        <input type="checkbox" [(ngModel)]="dataTable.expandColumnVisible"/>
+                        <span>{{dataTable.translations.expandColumn}}</span>
+                    </label>
+                </div>
+                <div *ngIf="dataTable.indexColumn" class="column-selector-fixed-column checkbox">
+                    <label class="column-label">
+                        <input type="checkbox" [(ngModel)]="dataTable.indexColumnVisible"/>
+                        <span>{{dataTable.translations.indexColumn}}</span>
+                    </label>
+                </div>
+                <div *ngIf="dataTable.selectColumn" class="column-selector-fixed-column checkbox">
+                    <label class="column-label">
+                        <input type="checkbox" [(ngModel)]="dataTable.selectColumnVisible"/>
+                        <span>{{dataTable.translations.selectColumn}}</span>
+                    </label>
+                </div>
+                <div *ngFor="let column of dataTable.columns" class="column-selector-column checkbox">
+                    <label class="column-label">
+                        <input type="checkbox" [(ngModel)]="column.visible"/>
+                        <span [textContent]="column.header"></span>
+                    </label>
+                </div>
+                <div class="dropdown-divider"></div>
+                <button *ngIf="dataTable.items.length>0" type="button"
+                    class="btn btn-secondary btn-sm"
+                    (click)="onClickExportToPDF()">
+                    <i class="fa fa-file-pdf-o"></i>
+                    Exportar para PDF
+                </button>
+                <button *ngIf="dataTable.items.length>0" type="button" 
+                    class="btn btn-secondary btn-sm mt-2" style="font-size:12px"
+                    (click)="onClickExportToCSV()">
+                    <i class="fa fa-file-excel-o"></i>
+                    Exportar para CSV
+                </button>                
+
+
+            </div>
+        </div>
+    </div>
+</div>

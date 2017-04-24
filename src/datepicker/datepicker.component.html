@@ -1,0 +1,61 @@
+ <div class="gx-datepicker datepicker-container u-is-unselectable">
+
+    <div class="d-flex flex-row">
+      <input type="text" class="form-control form-control-sm datepicker-input" 
+        [ngModel]="date?.formatted" 
+        (blur)="onDateChange($event)"
+        [textMask]="dateMask">
+      <button class="btn btn-sm btn-default datepicker-button" (click)="toggle()">
+          <i class="fa fa-calendar"></i>      
+       </button>
+    </div>
+
+    <div class="datepicker-calendar" *ngIf="opened">
+      <div class="datepicker-calendar-top bg-info text-white">
+        <button type="button" (click)="openYearPicker()" *ngIf="!yearPicker">
+            <span class="year-title">{{ currentDate.format('YYYY') }}</span>
+        </button>
+        <button type="button" (click)="closeYearPicker()" *ngIf="yearPicker" class="btn" style="margin-top:5px">
+            <span>Voltar</span>
+        </button>        
+        <i class="close" (click)="close()"></i>
+      </div>
+      <div class="datepicker-calendar-container">
+        <div *ngIf="!yearPicker">
+          <div class="datepicker-calendar-month-section">
+            <i class="fa fa-chevron-left" (click)="prevMonth()"></i>
+            <span class="month-title">{{ currentDate.format('MMMM') }}</span>
+            <i class="fa fa-chevron-right" (click)="nextMonth()"></i>
+          </div>
+          <div class="datepicker-calendar-day-names">
+            <span>S</span>
+            <span>T</span>
+            <span>Q</span>
+            <span>Q</span>
+            <span>S</span>
+            <span>S</span>
+            <span>D</span>            
+          </div>
+          <div class="datepicker-calendar-days-container">
+            <span class="day" *ngFor="let d of days; let i = index"
+                  (click)="selectDate($event, d.momentObj)"
+                  [ngClass]="{ 'disabled': !d.enabled, 'text-primary': d.today, 'bg-warning': d.selected, 'text-danger': d.sunday && d.enabled}">
+              {{ d.day }}
+            </span>
+          </div>
+          <div class="datepicker-buttons" *ngIf="!options.autoApply">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="today()">Hoje</button>
+          </div>
+        </div>
+        <div *ngIf="yearPicker">
+          <div class="datepicker-calendar-years-container">
+            <span class="year" *ngFor="let y of years; let i = index" 
+              (click)="selectYear($event, y)"
+               [class.bg-warning]="y == currentDate.year()">
+              {{ y }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

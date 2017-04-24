@@ -1,0 +1,63 @@
+<div class="form-inline pagination-box">
+    <div class="form-group">
+        <select class="form-control form-control-sm" #limitInput
+            [ngModel]="limit" (change)="limit = limitInput.value"
+            title="{{dataTable.translations.paginationLimit}}">
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+            <option>100</option>
+        </select>
+    </div>
+
+    <ul class="pagination pagination-sm pagination-ul">
+        <li class="page-item" [class.disabled]="dataTable.offset <= 0">
+            <button class="page-link" 
+                [disabled]="dataTable.offset <= 0" 
+                (click)="pageFirst()"> 
+                <i class="fa fa-fast-backward"></i>
+            </button>
+        </li>
+        <li class="page-item" [class.disabled]="dataTable.offset <= 0">
+            <button class="page-link" 
+                [disabled]="dataTable.offset <= 0" 
+                (click)="pageBack()">
+                <i class="fa fa-backward"></i>
+            </button>
+        </li>
+        
+        <li class="page-item">
+            <div class="form-group">
+                <input #pageInput type="number" class="form-control form-control-sm ml-2" min="1" step="1" max="{{maxPage}}"
+                    [ngModel]="page" (change)="onPageChange($event)" style="width:80px"
+                    (keyup.enter)="page = pageInput.value" (keyup.esc)="pageInput.value = page" />
+                <span class="text-muted mx-2">de</span>
+                <span [textContent]="dataTable.lastPage" class="text-muted mr-2"></span> 
+            </div>                
+        </li>
+
+        <li class="page-item" [class.disabled]="(dataTable.offset + dataTable.limit) >= dataTable.itemCount">
+            <button  class="page-link" 
+                [disabled]="(dataTable.offset + dataTable.limit) >= dataTable.itemCount" 
+                (click)="pageForward()">
+                <i class="fa fa-forward"></i>
+            </button>
+        </li>
+        <li class="page-item" [class.disabled]="(dataTable.offset + dataTable.limit) >= dataTable.itemCount">
+            <button  class="page-link" 
+                [disabled]="(dataTable.offset + dataTable.limit) >= dataTable.itemCount" 
+                (click)="pageLast()"> 
+                <i class="fa fa-fast-forward"></i>
+            </button>
+        </li>            
+    </ul>
+
+    <div class="form-group">
+        <strong class="mr-2">{{dataTable.translations.paginationRange}}:</strong>
+        <span [textContent]="dataTable.offset + 1" class="text-muted"></span>
+        -
+        <span [textContent]="[dataTable.offset + dataTable.limit , dataTable.itemCount] | min" class="text-muted"></span>
+        /
+        <span [textContent]="dataTable.itemCount" class="text-muted"></span>
+    </div>
+</div>   

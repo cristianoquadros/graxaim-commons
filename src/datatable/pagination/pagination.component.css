@@ -1,0 +1,16 @@
+.pagination-box {
+    margin-top: -5pt;
+    margin-bottom: 8px;
+}
+
+.pagination-ul {
+    margin: auto;
+}
+
+button.page-link {
+    cursor: pointer;
+}
+
+li.page-item.disabled {
+    cursor: not-allowed;
+}
